@@ -17,7 +17,8 @@
     </div>
     <div class="col-md-4 col-11">
         <input name="" id="" class="form-control ms-md-2 mt-4 ms-0 w-75" type="text" [value]="ClientName">
-    </div><!--pe-5 pt-5 ps-md-0-->
+    </div>
+    <!--pe-5 pt-5 ps-md-0-->
     <div class="col-md-7 ps-5 pe-md-5 pe-0 col-12 mt-md-4 mt-0">
         <select class="form-select" aria-label="Default select example" [(ngModel)]="SelectedID">
             <option value="0" selected>Select Category</option>
@@ -43,7 +44,7 @@
 <section class="container my-3" style="width: 100%;">
     <div class="row g-0">
         <div class="col-12">
-            <h2 class="ms-5"><b>{{ClientName}}  Cart</b></h2>            
+            <h2 class="ms-5"><b>{{ClientName}} Cart</b></h2>
         </div>
     </div>
     <div class="row g-0">
@@ -64,10 +65,12 @@
                         <td>{{item.Name}}</td>
                         <td>{{item.Price}}</td>
                         <td>{{item.Quantity}}</td>
-                        <td><!--+Quantity.value,item.Price-->
+                        <td>
+                            <!--+Quantity.value,item.Price-->
                             <div class="mb-3">
-                                <input type="number" class="form-control" name="" #Quantity [max]="item.Quantity" [value]="item.UserQ"
-                                    min="1" id="" aria-describedby="helpId" placeholder="" (change)="OnQuantityChange(item.ID)">
+                                <input type="number" class="form-control" name="" #Quantity [max]="item.Quantity"
+                                    [value]="item.UserQ" min="1" id="" aria-describedby="helpId" placeholder=""
+                                    (change)="OnQuantityChange(item.ID)">
                             </div>
                         </td>
                         <td>
@@ -92,9 +95,14 @@
         <div class="col-12">
             <div class="card shadow-lg mb-5 me-5 ms-5 rounded">
                 <div class="card-body">
-                  <h3>Total Price <b> {{TotalPrice | currency}}</b></h3> 
+                    <h3>Total Price <b> {{TotalPrice | currency}}</b></h3>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
+    <!-- <div class="card m-4" *ngIf="!IsPurshased">
+    <div class="card-body">
+      Thanks for purchasing from our Store <b>{{ClientName}}</b>.
+    </div>
+  </div> -->
 </section>
