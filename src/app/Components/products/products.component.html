@@ -1,0 +1,68 @@
+<section class="container my-3" style="width: 100%;">
+  <div class="row g-0">
+    <div class="col-12">
+        <h2 class="ms-5"><b>Get Your Order</b></h2>            
+    </div>
+  </div>
+  <div class="row g-0">
+    <div class="col-12 p-5 table-responsive">
+      <!-- On tables *ngIf="IsPurshased">-->
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Count</th>
+            <th scope="col">Buy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of ProductListNew" [ngStyle]="{'background-color':item.Quantity == 1 ? '#ffc107' : '' }">
+            <ng-container *ngIf="item.Quantity!=0">
+              <td>{{item.Name}}</td>
+              <td>
+                <img src="{{item.Img}}" class="img-fluid rounded" style="width: 7vmax; height: 7vmax;" alt="">
+              </td>
+              <td>{{item.Price}}</td>
+              <td>{{item.Quantity}}</td>
+              <td>
+                <div class="mb-3">
+                  <input type="number" #Count class="form-control" [max]="item.Quantity" (change)="getValue()" value="1" min="1" aria-describedby="helpId" placeholder="">
+                </div>
+              </td>
+              <td>
+                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
+                <button name="buy" id="buy" class="btn btn-dark" (click)="UpdateUserCart(item.ID,item.Name,item.Price,+Count.value,item.Quantity)" role="button">ADD</button>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card m-4" *ngIf="!IsPurshased">
+    <div class="card-body">
+      Thanks for purchasing from our Store <b>{{ClientName}}</b>.
+    </div>
+  </div> -->
+  <!-- <div class="container-fluid g-0">
+    <div class="d-flex flex-wrap g-0 p-3 m-5">
+      <div class="card m-3 me-5" ProductCard="#000;" style="width: 18rem;" *ngFor="let item of ProductListNew">
+        <img src="{{item.Img}}" class="card-img-top" style="border-radius: 5%;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{item.Name}}</h5>
+          <div class="text-end">
+            <p class="placeholder-glow">{{item.CreationDate| date:'longDate' }}</p>
+          </div>
+          <p class="card-text"><b>Quantity :</b> {{item.Quantity}}</p>
+          <p class="card-text"><b>Price :</b>{{item.Price|currency:'EGP'}}</p>
+          <div class="text-end">
+            <a href="#" class="btn btn-primary">BUY</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</section>

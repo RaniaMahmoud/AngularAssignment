@@ -5,4 +5,5 @@ export interface IProduct {
     Price: number;
     Img: string;
     CateogryID: number;
+    CreationDate:Date;
 }

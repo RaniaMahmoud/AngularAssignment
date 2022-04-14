@@ -1,0 +1,100 @@
+<div class="row g-0">
+    <div class="col-md-8 col-12">
+        <div class="row g-0">
+            <div class="col-md-1 col-1">
+                <img [src]="store.Logo" class="img-fluid rounded-circle mt-4" style="width: 4vmax; height: 4vmax;"
+                    alt="...">
+            </div>
+            <div class="col-md-11 col-8">
+                <h1 class="mt-md-4 mt-3">{{store.Name}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row g-0">
+    <div class="col-md-1 col-12 mt-md-4 mt-0">
+        <label name="" id="" class="ms-md-4 mt-2"><b>Name</b> </label>
+    </div>
+    <div class="col-md-4 col-11">
+        <input name="" id="" class="form-control ms-md-2 mt-4 ms-0 w-75" type="text" [value]="ClientName">
+    </div><!--pe-5 pt-5 ps-md-0-->
+    <div class="col-md-7 ps-5 pe-md-5 pe-0 col-12 mt-md-4 mt-0">
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="SelectedID">
+            <option value="0" selected>Select Category</option>
+            <option *ngFor="let item of CategoryList" id="{{item.ID}}" [value]="item.ID">{{item.Name}}</option>
+        </select>
+    </div>
+</div>
+<div class="row g-0">
+    <div class="col-md-12 mt-md-3">
+        <p class="placeholder-glow mt-3 ps-4">
+            <b>Credit Card:
+            </b> {{CreditCard| creditCard }}
+        </p>
+        <p class=" placeholder-glow mt-3 ps-4"><b>Birth Date:
+            </b>{{NationalID| egynationaID:'FullDate' }}
+        </p>
+    </div>
+</div>
+<hr class="ms-5 me-5">
+<app-products [GetSelectedID]="SelectedID" (AddToCart)="UpdateUserCart($event)">
+</app-products>
+<hr class="ms-5 me-5">
+<section class="container my-3" style="width: 100%;">
+    <div class="row g-0">
+        <div class="col-12">
+            <h2 class="ms-5"><b>{{ClientName}}  Cart</b></h2>            
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-12 p-5 table-responsive">
+            <!-- On tables *ngIf="IsPurshased">-->
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of ProductViewModel">
+                        <td>{{item.Name}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.Quantity}}</td>
+                        <td><!--+Quantity.value,item.Price-->
+                            <div class="mb-3">
+                                <input type="number" class="form-control" name="" #Quantity [max]="item.Quantity" [value]="item.UserQ"
+                                    min="1" id="" aria-describedby="helpId" placeholder="" (change)="OnQuantityChange(item.ID)">
+                            </div>
+                        </td>
+                        <td>
+                            <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">Buy</a> -->
+                            <button name="Remove" id="Remove" class="btn btn-dark" (click)="Remove(item.ID)"
+                                role="button">Remove</button>
+                        </td>
+                        <!-- <ng-container *ngIf="item.Quantity!=0">
+                            </ng-container> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-12 text-end">
+            <button name="" id="" class="btn btn-dark me-5" (click)="Done()" role="button">Place Order</button>
+        </div>
+    </div>
+    <hr class="ms-5 me-5">
+    <div class="row g-0">
+        <div class="col-12">
+            <div class="card shadow-lg mb-5 me-5 ms-5 rounded">
+                <div class="card-body">
+                  <h3>Total Price <b> {{TotalPrice | currency}}</b></h3> 
+                </div>
+            </div>        
+        </div>
+    </div>
+</section>

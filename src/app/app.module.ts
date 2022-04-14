@@ -3,10 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ProductsComponent } from './products/products.component';
-import { FooterComponent } from './footer/footer.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { ProductsComponent } from './Components/products/products.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { SideMenuComponent } from './Components/side-menu/side-menu.component';
+import { FormsModule } from '@angular/forms';
+import { ProductCardDirective } from './Directive/product-card.directive';
+import { EgynationaIDPipe } from './/Pipes/egynationa-id.pipe';
+import { CreditCardPipe } from './Pipes/credit-card.pipe';
+import { OrderComponent } from './Components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +19,16 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     HeaderComponent,
     ProductsComponent,
     FooterComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    ProductCardDirective,
+    EgynationaIDPipe,
+    CreditCardPipe,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
