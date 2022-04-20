@@ -1,4 +1,4 @@
-<div class="row g-0">
+<!-- <div class="row g-0">
     <div class="col-md-8 col-12">
         <div class="row g-0">
             <div class="col-md-1 col-1">
@@ -10,7 +10,12 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<!-- <div class="col-10">
+    <section class="ps-4">
+      <app-home></app-home>
+    </section>
+</div> -->
 <div class="row g-0">
     <div class="col-md-1 col-12 mt-md-4 mt-0">
         <label name="" id="" class="ms-md-4 mt-2"><b>Name</b> </label>
@@ -22,11 +27,11 @@
     <div class="col-md-7 ps-5 pe-md-5 pe-0 col-12 mt-md-4 mt-0">
         <select class="form-select" aria-label="Default select example" [(ngModel)]="SelectedID">
             <option value="0" selected>Select Category</option>
-            <option *ngFor="let item of CategoryList" id="{{item.ID}}" [value]="item.ID">{{item.Name}}</option>
+            <option *ngFor="let item of CategoryList" id="{{item.id}}" [value]="item.id">{{item.Name}}</option>
         </select>
     </div>
 </div>
-<div class="row g-0">
+<!-- <div class="row g-0">
     <div class="col-md-12 mt-md-3">
         <p class="placeholder-glow mt-3 ps-4">
             <b>Credit Card:
@@ -36,7 +41,7 @@
             </b>{{NationalID| egynationaID:'FullDate' }}
         </p>
     </div>
-</div>
+</div> -->
 <hr class="ms-5 me-5">
 <app-products [GetSelectedID]="SelectedID" (AddToCart)="UpdateUserCart($event)">
 </app-products>
@@ -70,7 +75,7 @@
                             <div class="mb-3">
                                 <input type="number" class="form-control" name="" #Quantity [max]="item.Quantity"
                                     [value]="item.UserQ" min="1" id="" aria-describedby="helpId" placeholder=""
-                                    (change)="OnQuantityChange(item.ID)">
+                                    (change)="OnQuantityChange(item.ID,+Quantity.value)">
                             </div>
                         </td>
                         <td>

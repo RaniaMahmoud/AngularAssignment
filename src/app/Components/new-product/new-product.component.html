@@ -1,0 +1,82 @@
+<!-- <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Textarea</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field> -->
+
+<div class="container-fluid g-0">
+    <div class="row g-0">
+        <div class="col-12">
+            <div class="mt-5 ms-5">
+                <h1 class="form-label fs-1"><b>Enter Data</b></h1>
+            </div>
+        </div>
+    </div>
+    <form (ngSubmit)="Check()">
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="ProductViewM.Name" name="Name" placeholder="Product Name">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Price</label>
+                    <input type="number" class="form-control" [(ngModel)]="ProductViewM.Price" name="Price" id="price" placeholder="Price">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="Quantity" [(ngModel)]="ProductViewM.Quantity" name="Quantity" id="Quantity"  placeholder="Quantity">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" [(ngModel)]="ProductViewM.CreationDate" name="Data" placeholder="Date">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Image</label>
+                    <input type="text" class="form-control"  id="image" [(ngModel)]="ProductViewM.Img" name="ima"  placeholder="Image">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Category</label>
+                    <select class="form-control" name="category" [(ngModel)]="ProductViewM.CateogryID" id="category">
+                        <option *ngFor="let item of categoryList" [value]="item.id">{{item.Name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6 text-end">
+                <button type="submit" class="btn btn-dark mt-5">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

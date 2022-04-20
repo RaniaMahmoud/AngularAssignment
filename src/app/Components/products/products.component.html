@@ -15,26 +15,41 @@
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Count</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
             <th scope="col">Buy</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of ProductListNew" [ngStyle]="{'background-color':item.Quantity == 1 ? '#ffc107' : '' }">
+          <tr *ngFor="let item of ProductListVM" [ngStyle]="{'background-color':item.Quantity == 1 ? '#ffc107' : '' }">
             <ng-container *ngIf="item.Quantity!=0">
               <td>{{item.Name}}</td>
               <td>
-                <img src="{{item.Img}}" class="img-fluid rounded" style="width: 7vmax; height: 7vmax;" alt="">
+                <img src="assets/{{item.Img}}" class="img-fluid rounded" style="width: 7vmax; height: 7vmax;" alt="">
               </td>
               <td>{{item.Price}}</td>
               <td>{{item.Quantity}}</td>
               <td>
                 <div class="mb-3">
-                  <input type="number" #Count class="form-control" [max]="item.Quantity" (change)="getValue()" value="1" min="1" aria-describedby="helpId" placeholder="">
+                  <input type="number" #Count class="form-control" [max]="item.Quantity" [value]="1" min="1" aria-describedby="helpId" placeholder="">
                 </div>
               </td>
               <td>
                 <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
-                <button name="buy" id="buy" class="btn btn-dark" (click)="UpdateUserCart(item.ID,item.Name,item.Price,+Count.value,item.Quantity)" role="button">ADD</button>
+                <a name="Details" id="Details" class="btn btn-info" (click)="Details(item.id)" [routerLink]="['/Products', item.id]" role="button">Details</a>
+              </td>
+              <td>
+                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
+                <a name="Edit" id="Edit" class="btn btn-warning" (click)="Edit(item.id)" role="button">Edit</a>
+              </td>
+              <td>
+                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
+                <a name="Delete" id="Delete" class="btn btn-danger" (click)="Delete(item.id)" role="button">Delete</a>
+              </td>
+              <td>
+                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
+                <button name="ADD" id="ADD" class="btn btn-dark" (click)="UpdateUserCart(item.id,item.Name,item.Price,+Count.value,item.Quantity)" role="button">ADD</button>
               </td>
             </ng-container>
           </tr>

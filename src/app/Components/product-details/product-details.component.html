@@ -1,0 +1,22 @@
+<div class="container-fluid g-0">
+    <div class="d-flex flex-wrap g-0 p-3 m-5">
+        <div class="card m-3 me-5" style="width: 35rem;">
+            <img src="assets/{{ProductViewM?.Img}}" class="card-img-top" style="border-radius: 5%;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ProductViewM?.Name}}</h5>
+                <div class="text-end">
+                    <p class="placeholder-glow">{{ProductViewM?.CreationDate| date:'longDate' }}</p>
+                </div>
+                <p class="card-text"><b>Quantity :</b> {{ProductViewM?.Quantity}}</p>
+                <p class="card-text"><b>Price :</b>{{ProductViewM?.Price|currency:'EGP'}}</p>
+                <div class="btn-group w-100" role="group" aria-label="Basic example">
+                    <button type="button" [disabled]="(Prev())" class="btn btn-info rounded" (click)="PrevProduct()">Prev</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-dark rounded" (click)="GoBackToPage()">Back</button>
+                    &nbsp;&nbsp;
+                    <button type="button" [disabled]="(Next())" class="btn btn-info rounded " (click)="NextProduct()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

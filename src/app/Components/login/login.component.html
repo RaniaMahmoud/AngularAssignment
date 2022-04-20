@@ -1,0 +1,25 @@
+<div class="wrapper fadeInDown" style="background-color: #56baed; height: 100vh;">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </h2>
+      <h2 class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../assets/Storelogo.png" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In" [routerLink]="['']">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
