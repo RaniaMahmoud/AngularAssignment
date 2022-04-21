@@ -1,0 +1,21 @@
+
+<div class="container-fluid g-0">
+    <div class="d-flex flex-wrap g-0 p-3 m-5">
+        <div class="card m-3 me-5" style="width: 35rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{User.Full_Name}}</h3>
+                <div class="text-center">
+                    <p class="placeholder-glow">{{User.Email}}</p>
+                </div>
+                <p class="card-text"><b>Phone :</b></p>
+                <p *ngFor="let item of User.Mobile_number">{{item}}</p>
+                <p class="card-text"><b>Postal Code :</b>{{User.Address.postalCode}}</p>
+                <p class="card-text"><b>Street :</b>{{User.Address.street}}</p>
+                <p class="card-text"><b>City :</b>{{User.Address.city}}</p>
+                <div class="btn-group w-100" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-dark rounded" (click)="GoBackToPage()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

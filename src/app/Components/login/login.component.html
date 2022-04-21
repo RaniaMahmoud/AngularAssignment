@@ -1,25 +1,62 @@
-<div class="wrapper fadeInDown" style="background-color: #56baed; height: 100vh;">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <h2 class="active" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </h2>
-      <h2 class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </h2>
-  
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="../../assets/Storelogo.png" id="icon" alt="User Icon" />
-      </div>
-  
-      <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In" [routerLink]="['']">
-      </form>
-  
-      <!-- Remind Passowrd -->
-      <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div>
-  
+<!-- style="background-color: #56baed; height: 100vh;" -->
+
+<div class="wrapper fadeInDown" style="height: 100vh;">
+
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <!-- Icon -->
+    <div class="container-fluid g-0 m-0">
+      <div class="row g-0">
+        <div class="col-12 mt-0">
+            <div class="mt-0 ms-5">
+              <div class="fadeIn first">
+                <h2 class="active" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </h2>
+                <h2 class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </h2>
+              </div>                
+            </div>
+        </div>
     </div>
+      <div class="row g-0">
+          <div class="col-12">
+              <div class="mt-5 ms-5">
+                <div class="fadeIn first">
+                  <img src="../../assets/Storelogo.png" id="icon" alt="User Icon" />
+                </div>                
+              </div>
+          </div>
+      </div>
+      <form #form="ngForm" (submit)="Submit()">
+          <div class="row g-0">
+              <div class="col-12">
+                  <div class="mt-4 ms-5">
+                      <input type="text" class="form-control" [(ngModel)]="User.Full_Name" name="Name" placeholder="User Name" minlength="5" required>
+                  </div>
+              </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-12">
+                <div class="mt-4 ms-5">
+                    <input type="password" class="form-control"  id="password" minlength="6" required [(ngModel)]="User.password" name="password"  placeholder="password">
+                </div>
+            </div>
+          </div>
+          <div class="row g-0">
+              <div class="col-12 text-end">
+                  <button type="submit" [disabled]="form.invalid" class="btn btn-dark m-5">Submit</button>
+              </div>
+          </div>
+      </form>
   </div>
+    <!-- Login Form -->
+    <!-- <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Full Name" required minlength="5">
+      <input type="email" id="login" class="fadeIn second" name="login" placeholder="Email" required>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="phone" pattern="[0-9]+">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="city">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="PostalCode">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="street">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Sign Up">
+    </form> -->
+  </div>
+</div>

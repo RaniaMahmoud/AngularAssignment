@@ -29,10 +29,10 @@ export class APIUsersService {
     return this.httpClient.post<User>(`${environment.APIUrl}/user`,JSON.stringify(productvm),this.httpOptions);
   } 
 
-  updateUser(ID: number, Product: User):Observable<User>
+  updateUser(ID: number, User: User):Observable<User>
   {
-    console.log(JSON.stringify(Product))
-    return this.httpClient.patch<User>(`${environment.APIUrl}/user/${ID}`,JSON.stringify(Product),this.httpOptions);
+    console.log(JSON.stringify(User))
+    return this.httpClient.patch<User>(`${environment.APIUrl}/user/${ID}`,JSON.stringify(User),this.httpOptions);
   }
 
   deleteUser(ID:number):Observable<User>

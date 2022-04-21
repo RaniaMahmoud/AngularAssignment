@@ -1,10 +1,12 @@
 export interface User{
     id: number,
-    Name: string,
+    Full_Name: string,
     Email: string,
-    Phone: string,
-    City: string,
-    PostalCode: string,
-    street: string,
+    Mobile_number: string[],
+    Address:{
+        city: string,
+        postalCode: string,
+        street: string,
+    },
     password:string
 }

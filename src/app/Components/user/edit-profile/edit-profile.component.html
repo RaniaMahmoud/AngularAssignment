@@ -1,0 +1,73 @@
+<div class="container-fluid g-0">
+    <div class="row g-0">
+        <div class="col-12">
+            <div class="mt-5 ms-5">
+                <h1 class="form-label fs-1"><b>Enter Data</b></h1>
+            </div>
+        </div>
+    </div>
+    <form (ngSubmit)="Check()">
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="User.Full_Name" name="Full_Name" placeholder="User Name">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="email" class="form-control" [(ngModel)]="User.Email" name="Price" id="price" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="Quantity" [(ngModel)]="User.Mobile_number[i]" *ngFor="let item of User.Mobile_number; let i=index" name="Quantity" id="Quantity"  placeholder="Phone">
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="date" [(ngModel)]="User.password" name="Data" placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control"  id="image" [(ngModel)]="User.Address.postalCode" name="ima"  placeholder="Image">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">Street</label>
+                    <input type="text" class="form-control"  id="streer" [(ngModel)]="User.Address.street" name="ima"  placeholder="Image">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6">
+                <div class="mt-4 ms-5">
+                    <label for="exampleFormControlInput1" class="form-label">City</label>
+                    <input type="text" class="form-control"  id="image" [(ngModel)]="User.Address.city" name="ima"  placeholder="Image">
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-6 text-end">
+                <button type="submit" class="btn btn-dark mt-5">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

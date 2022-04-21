@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  APIUrl: "http://localhost:3000"
+  APIUrl: "http://localhost:3000",
+  ISLogin:false,
+  Token:"Token",
+  UserID:0
 };
 
 /*

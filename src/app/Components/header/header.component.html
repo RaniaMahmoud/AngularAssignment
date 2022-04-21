@@ -27,8 +27,16 @@
         </li>
       </ul>
       <div class="d-flex">
-        <span class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </span>
-        <span class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </span>
+
+        <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" (click)="LogOut()">LogOut </span>
+
+        <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/User/UserProfile']">My Profile </span>
+        
+        <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/User/EditProfile']">Edit Profile</span>
+
+        <span *ngIf="!LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Login']">Log In </span>
+
+        <span *ngIf="!LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </span>
       </div>
     </div>
   </div>

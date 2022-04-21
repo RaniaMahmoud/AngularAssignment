@@ -7,7 +7,7 @@ import { HeaderComponent } from './Components/header/header.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { SideMenuComponent } from './Components/side-menu/side-menu.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCardDirective } from './Directive/product-card.directive';
 import { EgynationaIDPipe } from './/Pipes/egynationa-id.pipe';
 import { CreditCardPipe } from './Pipes/credit-card.pipe';
@@ -25,6 +25,7 @@ import { NewProductComponent } from './Components/new-product/new-product.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { LayOutWithHeaderComponent } from './Components/lay-out-with-header/lay-out-with-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     LayOutComponent,
     LoginComponent,
     NewProductComponent,
+    LayOutWithHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MaterialModule,
     NoopAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,19 +1,17 @@
 <div class="wrapper fadeInDown" style="height: 100vh;">
-
     <div id="formContent">
       <!-- Tabs Titles -->
       <!-- Icon -->
-      <div class="container-fluid g-0 m-0">
         <div class="row g-0">
-          <div class="col-12 mt-0">
-              <div class="mt-0 ms-5">
-                <div class="fadeIn first">
-                  <h2 class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </h2>
-                  <h2 class="active" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </h2>
-                </div>                
-              </div>
-          </div>
-      </div>
+            <div class="col-12 mt-0">
+                <div class="mt-0 ms-5">
+                    <div class="fadeIn first">
+                        <h2 class="inactive underlineHover mt-5" style="cursor: pointer;" [routerLink]="['/Login']"> Sign In </h2>
+                        <h2 class="active mt-5" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </h2>
+                    </div>                
+                </div>
+            </div>
+        </div>
         <div class="row g-0">
             <div class="col-12">
                 <div class="mt-5 ms-5">
@@ -23,59 +21,164 @@
                 </div>
             </div>
         </div>
-        <form #form="ngForm" (submit)="Submit()">
+        <form #form="ngForm" [formGroup]="RegisterForm" (submit)="Submit()">
             <div class="row g-0">
                 <div class="col-12">
                     <div class="mt-4 ms-5">
-                        <input type="text" class="form-control" [(ngModel)]="User.Name" name="Name" placeholder="User Name" minlength="5" required>
+                        <input type="text" class="form-control" formControlName="Full_Name"[value]="User.Full_Name" name="Full_Name" placeholder="User Name" [class.is-valid]="Full_Name.valid" [class.is-invalid]="Full_Name.invalid && Full_Name.touched">
+                    </div>
+                    <div [hidden]="Full_Name.valid || Full_Name.untouched">
+                        <small *ngIf="Full_Name.errors?.['required']" id="helpId" class="form-text text-muted d-block">User Name is
+                          Required</small>
+                        <small *ngIf="Full_Name.errors?.['minlength']" id="helpId2" class="form-text text-muted d-block">User Name must be 6
+                          letters at least</small>
                     </div>
                 </div>
             </div>
             <div class="row g-0">
                 <div class="col-12">
                     <div class="mt-4 ms-5">
-                        <input type="Email" class="form-control" [(ngModel)]="User.Email" name="Email" id="Email" placeholder="Email" required>
+                        <input type="Email" class="form-control" [value]="User.Email" formControlName="Email" name="Email" id="Email" placeholder="Email" [class.is-valid]="Email.valid" [class.is-invalid]="Email.invalid && Email.touched">
+                    </div>
+                    <div [hidden]="Email.valid || Email.untouched">
+                        <small *ngIf="Email.errors?.['required']" id="helpId" class="form-text text-muted d-block">User Email is
+                          Required</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0" formArrayName="Mobile_number">
+              <div class="col-12">
+                  <div class="row g-0" *ngFor="let item of Mobile_number.controls; let i=index">
+                    <div class="col-10">
+                        <div class="mt-4 ms-5" >
+                            <input type="tel" class="form-control ms-4" [value]="User.Mobile_number" formControlName="{{i}}"  id="{{i}}"  name="Phone{{i}}"  placeholder="Phone {{i+1}}" [class.is-valid]="item.valid" [class.is-invalid]="item.invalid && item.touched">
+                        </div>
+                        <div [hidden]="item.valid || item.untouched">
+                            <small id="helpId" class="form-text text-muted d-block">User Mobile Number is
+                              Required</small>
+                        </div>
+                    </div>
+                    <div class="col-2" *ngIf="i!=0">
+                        <div class="mt-5">
+                            <button type="button" class="btn btn-danger" (click)="DeletePhone(i)">--</button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row g-0">
+                    <div class="col-12 me-5">
+                        <div class="me-5 text-end">
+                            <button type="button" class="btn btn-info" (click)="NewPhone()">+</button>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            
+            <div formGroupName="Address">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <div class="mt-4 ms-5">
+                            <input type="text" class="form-control" id="street" formControlName="street" name="street" id="street"  placeholder="street" [class.is-valid]="street.valid" [class.is-invalid]="street.invalid && street.touched">
+                        </div>
+                        <div [hidden]="street.valid || street.untouched">
+                            <small id="helpId" class="form-text text-muted d-block">User Street is
+                              Required</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-12">
+                        <div class="mt-4 ms-5">
+                            <input type="text" class="form-control" formControlName="city" id="City"  name="City" placeholder="City" [class.is-valid]="city.valid" [class.is-invalid]="city.invalid && city.touched">
+                        </div>
+                        <div [hidden]="city.valid || city.untouched">
+                            <small id="helpId" class="form-text text-muted d-block">User City is
+                              Required</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-12">
+                        <div class="mt-4 ms-5">
+                            <input type="text" class="form-control" formControlName="postalCode"   id="postalCode" name="ima"  placeholder="Postal Code" [class.is-valid]="postalCode.valid" [class.is-invalid]="postalCode.invalid && postalCode.touched">
+                        </div>
+                        <div [hidden]="postalCode.valid || postalCode.untouched">
+                            <small id="helpId" class="form-text text-muted d-block">User Postal Code is
+                              Required</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="mb-3">
+                <div class="btn-group">
+                    <input type="radio" class="btn-check" formControlName="Delivery" name="Delivery" id="AnyDay" value="AnyDay" autocomplete="off"  (change)="DeliveryValidaiton()" />
+                    <label class="btn btn-info" for="AnyDay">AnyDay</label>
+                  
+                    <input type="radio" class="btn-check" formControlName="Delivery" name="Delivery" id="SpecificDays" value="SpecificDays" autocomplete="off" (change)="DeliveryValidaiton()"/>
+                    <label class="btn btn-info" for="SpecificDays">SpecificDays</label>
+                  </div>
+                <!-- <div class="btn-group" role="group">
+                  <input class="form-check-input" type="radio" formControlName="Delivery" value="AnyDay" (change)="DeliveryValidaiton()"
+                    class="btn-check" name="Delivery" id="AnyDay" autocomplete="off">
+                  <label for="SpecificDays">Any Day</label>
+                  <input class="form-check-input" type="radio" formControlName="Delivery" value="SpecificDays" (change)="DeliveryValidaiton()"
+                    class="btn-check" name="Delivery" id="SpecificDays" autocomplete="off">
+                  <label for="SpecificDays">Specific Days</label>
+                </div> -->
+            </div>
+            <div class="mb-3" [hidden]="Delivery.value!='SpecificDays'">
+            </div>
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="mt-4 ms-5" [hidden]="Delivery.value!='SpecificDays'">
+                        <input type="text" formControlName="SpecificDay" class="form-control" name="SpecificDay" id="SpecificDay"
+                        placeholder="Specific Days" [class.is-valid]="SpecificDay.valid" [class.is-invalid]="SpecificDay.invalid && SpecificDay.touched">                    
+                    </div>
+                    <div [hidden]="SpecificDay.valid || SpecificDay.untouched">
+                        <small id="helpId" class="form-text text-muted d-block">Specific Days is
+                        Required
+                        </small>
                     </div>
                 </div>
             </div>
             <div class="row g-0">
               <div class="col-12">
                   <div class="mt-4 ms-5">
-                      <input type="tel" class="form-control"  id="Phone" [(ngModel)]="User.Phone" name="Phone"  placeholder="Phone" pattern="[0-9]+">
+                      <input type="password" class="form-control" [value]="User.password" formControlName="password"  id="password"  name="password"  placeholder="Password" [class.is-valid]="password.valid" [class.is-invalid]="password.invalid && password.touched">
                   </div>
-              </div>
-          </div>
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="mt-4 ms-5">
-                        <input type="text" class="form-control" id="street" [(ngModel)]="User.street" name="street" id="street"  placeholder="street">
-                    </div>
+                  <div [hidden]="password.valid || password.untouched">
+                    <small *ngIf="password.errors?.['required']" id="helpId" class="form-text text-muted d-block">User Password is
+                        Required</small>
+                    <small *ngIf="password.errors?.['minlength']" id="helpId2" class="form-text text-muted d-block">User Password must be 6
+                        letters at least</small> 
+                    <small *ngIf="password.errors?.['pattern']" id="helpId3" class="form-text text-muted d-block">Password Must Be Hard
+                    </small>           
                 </div>
-            </div>
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="mt-4 ms-5">
-                        <input type="text" class="form-control" id="City" [(ngModel)]="User.City" name="City" placeholder="City">
-                    </div>
-                </div>
-            </div>
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="mt-4 ms-5">
-                        <input type="text" class="form-control"  id="PostalCode" [(ngModel)]="User.PostalCode" name="ima"  placeholder="PostalCode">
-                    </div>
-                </div>
-            </div>
-            <div class="row g-0">
-              <div class="col-12">
-                  <div class="mt-4 ms-5">
-                      <input type="password" class="form-control"  id="password" minlength="6" required [(ngModel)]="User.password" name="password"  placeholder="password">
-                  </div>
               </div>
             </div>
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="mt-4 ms-5">
+                        <input type="password" class="form-control" formControlName="confirmPassword"  id="confirm Password" name="confirmPassword"  placeholder="Confirm Password" [class.is-valid]="confirmPassword.valid" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched">
+                    </div>
+                    <div [hidden]="confirmPassword.valid || confirmPassword.untouched">
+                        <small *ngIf="confirmPassword.errors?.['required']" id="helpId" class="form-text text-muted d-block">User confirm Password is
+                            Required</small>
+                        <small *ngIf="confirmPassword.errors?.['minlength']" id="helpId2" class="form-text text-muted d-block">User confirm Password must be 6
+                            letters at least</small>               
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger m-5" role="alert" *ngIf="RegisterForm.errors?.['Mismatch'] && (confirmPassword.touched || password.touched)">
+                Password and confirm password don't match.
+            </div>
+            <div class="alert alert-danger m-5" role="alert" *ngIf="RegisterForm.errors?.['IncludeName'] && (confirmPassword.touched || password.touched)">
+                Password Must Not Include User Name.
+            </div>     
             <div class="row g-0">
                 <div class="col-12 text-end">
-                    <button type="submit" [disabled]="form.invalid" class="btn btn-dark me-5 mt-5">Submit</button>
+                    <button type="submit" [disabled]="RegisterForm.invalid" class="btn btn-dark me-5 mt-5">Submit</button>
                 </div>
             </div>
         </form>
@@ -91,5 +194,4 @@
         <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
         <input type="submit" class="fadeIn fourth" value="Sign Up">
       </form> -->
-    </div>
-  </div>
+</div>
