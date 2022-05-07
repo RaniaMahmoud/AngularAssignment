@@ -20,7 +20,8 @@ export class APICategoryService {
   }
   
   getAllCateogories():Observable<Array<CategoryViewModel>>{
-    return this.httpClient.get<Array<CategoryViewModel>>(`${environment.APIUrl}/category`);
+    //console.log(this.httpClient.get<Array<CategoryViewModel>>(`${environment.APINewURL}/Category`))
+    return this.httpClient.get<Array<CategoryViewModel>>(`${environment.APINewURL}/Category`);
   }
 
 }

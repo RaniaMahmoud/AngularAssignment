@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  APINewURL:"http://localhost:53574/api",
   APIUrl: "http://localhost:3000",
   ISLogin:false,
   Token:"Token",

@@ -51,7 +51,7 @@
             <div class="col-6">
                 <div class="mt-4 ms-5">
                     <label for="exampleFormControlInput1" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date" [(ngModel)]="ProductViewM.CreationDate" name="Data" placeholder="Date">
+                    <input type="datetime-local" class="form-control" id="date" [(ngModel)]="ProductViewM.CreationDate" name="Data" placeholder="Date">
                 </div>
             </div>
         </div>
@@ -59,15 +59,21 @@
             <div class="col-6">
                 <div class="mt-4 ms-5">
                     <label for="exampleFormControlInput1" class="form-label">Image</label>
-                    <input type="text" class="form-control"  id="image" [(ngModel)]="ProductViewM.Img" name="ima"  placeholder="Image">
+                    <!-- <input type='file' (change)="readUrl($event)"> -->
+
+                    <input type="file" #file placeholder="Choose image" (change)="uploadFile(file.files)" (change)="readUrl($event)" name = "image" class="form-control">
+                    <img [src]="url" width="100px" height="100px">
+                    <br>
+                    <input type="text" class="form-control"  id="image" [(ngModel)]="ProductViewM.Image" name="ima"  placeholder="Image">
                 </div>
             </div>
         </div>
+
         <div class="row g-0">
             <div class="col-6">
                 <div class="mt-4 ms-5">
                     <label for="exampleFormControlInput1" class="form-label">Category</label>
-                    <select class="form-control" name="category" [(ngModel)]="ProductViewM.CateogryID" id="category">
+                    <select class="form-control" name="category" [(ngModel)]="ProductViewM.CategoryID" id="category">
                         <option *ngFor="let item of categoryList" [value]="item.id">{{item.Name}}</option>
                     </select>
                 </div>

@@ -130,16 +130,18 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     this.Subscription[0].unsubscribe();
   }
   ngAfterViewInit(): void {
-
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (this.GetSelectedID == 0) {  
       //this.ProductListNew = this.ProductList;
       //this.ProductListNew = this.productService.Get()
+      console.log("WHAT");
       this.APIProductsService.getAllProducts().subscribe(productList=>{
+        console.log("PRO");
         this.ProductListVM = productList;
       })
     } else {
+      console.log(this.GetSelectedID);
       this.APIProductsService.getAllProductsByCategoryID(this.GetSelectedID).subscribe(productList=>{
         this.ProductListVM = productList;
       })
@@ -158,6 +160,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     //const li=event?.target;
     console.log(id);
     this.IsPurshased = true;
+    console.log(this.GetSelectedID);
     //this.ProductListNew = this.productService.GetProductsByCategoryID(this.GetSelectedID);
     this.APIProductsService.getAllProductsByCategoryID(this.GetSelectedID).subscribe(productList=>{
       this.ProductListVM = productList;

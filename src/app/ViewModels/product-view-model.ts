@@ -3,7 +3,8 @@ export interface ProductViewM {
     Name: string;
     Quantity: number;
     Price: number;
-    Img: string;
-    CateogryID: number;
+    Image: string;
+    CategoryID: number;
     CreationDate?:Date;
+    //file:File
 }

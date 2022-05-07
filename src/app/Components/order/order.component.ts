@@ -46,7 +46,9 @@ export class OrderComponent implements OnInit, AfterViewInit {
     this.ProductViewM=[];
     //this.CategoryList = new Array<ICategory>();
     this.APICategoryService.getAllCateogories().subscribe(categoryList=>{
+      console.log(categoryList);
       this.CategoryList=categoryList;
+      console.log(this.CategoryList);
     });
     // this.CategoryList.push(
     //   {
