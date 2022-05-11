@@ -1,78 +1,30 @@
 <section class="container my-3" style="width: 100%;">
-  <div class="row g-0">
-    <div class="col-12">
-        <h2 class="ms-5"><b>Get Your Order</b></h2>            
-    </div>
-  </div>
-  <div class="row g-0">
-    <div class="col-12 p-5 table-responsive">
-      <!-- On tables *ngIf="IsPurshased">-->
-      <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Image</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Count</th>
-            <th scope="col">Details</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Buy</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of ProductListVM" [ngStyle]="{'background-color':item.Quantity == 1 ? '#ffc107' : '' }">
-            <ng-container *ngIf="item.Quantity!=0">
-              <td>{{item.Name}}</td>
-              <td>
-                <img src="http://localhost:53574/{{item.Image}}" class="img-fluid rounded" style="width: 7vmax; height: 7vmax;" alt="">
-              </td>
-              <td>{{item.Price}}</td>
-              <td>{{item.Quantity}}</td>
-              <td>
-                <div class="mb-3">
-                  <input type="number" #Count class="form-control" [max]="item.Quantity" [value]="1" min="1" aria-describedby="helpId" placeholder="">
-                </div>
-              </td>
-              <td>
-                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
-                <a name="Details" id="Details" class="btn btn-info" (click)="Details(item.id)" [routerLink]="['/Products', item.id]" role="button">Details</a>
-              </td>
-              <td>
-                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
-                <a name="Edit" id="Edit" class="btn btn-warning" (click)="Edit(item.id)" role="button">Edit</a>
-              </td>
-              <td>
-                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
-                <a name="Delete" id="Delete" class="btn btn-danger" (click)="Delete(item.id)" role="button">Delete</a>
-              </td>
-              <td>
-                <!-- <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.ID)" href="#" role="button">BUY</a> -->
-                <button name="ADD" id="ADD" class="btn btn-dark" (click)="UpdateUserCart(item.id,item.Name,item.Price,+Count.value,item.Quantity)" role="button">ADD</button>
-              </td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <!-- <div class="container-fluid g-0">
+  <div class="container-fluid g-0">
     <div class="d-flex flex-wrap g-0 p-3 m-5">
-      <div class="card m-3 me-5" ProductCard="#000;" style="width: 18rem;" *ngFor="let item of ProductListNew">
-        <img src="{{item.Img}}" class="card-img-top" style="border-radius: 5%;" alt="...">
+      <div class="card m-3 me-5" ProductCard="#000;" style="width: 19rem; height: 26rem;" *ngFor="let item of ProductListVM">
+        <img src="http://localhost:53574/{{item.Image}}" (click)="ProductDetaile(item.id)" class="card-img-top" style="border-radius: 5%;cursor: pointer;" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{item.Name}}</h5>
+          <h3 class="card-title fw-bold" style="color: #000;">{{item.Name}}</h3>
           <div class="text-end">
-            <p class="placeholder-glow">{{item.CreationDate| date:'longDate' }}</p>
+            <p class="placeholder-glow" style="color: #000;">{{item.CreationDate| date:'longDate' }}</p>
           </div>
-          <p class="card-text"><b>Quantity :</b> {{item.Quantity}}</p>
-          <p class="card-text"><b>Price :</b>{{item.Price|currency:'EGP'}}</p>
+          <div class="row">
+            <div class="col-5 fw-bold mt-4" style="color: #000;">
+              Quantity : {{item.Quantity}}
+            </div>
+            <div class="col-7"> 
+              <input type="number" #Count class="form-control mb-5 mt-3" [max]="item.Quantity" [value]="1" min="1">
+            </div>
+          </div>
+          <!-- <p class="card-text"><b>Quantity : </b> {{item.Quantity}}</p>
+          <p class="card-text"><b>Price : </b>{{item.Price|currency:'EGP'}}</p> -->
+          
           <div class="text-end">
-            <a href="#" class="btn btn-primary">BUY</a>
+            <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.id)" role="button">BUY</a>
+            <!-- <a href="#" class="btn btn-primary">BUY</a> -->
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </section>

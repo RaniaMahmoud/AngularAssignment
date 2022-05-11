@@ -25,19 +25,29 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/Admin" routerLinkActive="active">New Product</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Product/Show" routerLinkActive="active">Show Products</a>
+        </li>
       </ul>
+      
+      <button type="button" class="btn btn-dark rounded-pill position-relative">
+        <i class="fas fa-shopping-cart" style="font-size: 1.9rem;color: #fff;"></i>
+        <span class="position-absolute top-0 bottom-80 start-99 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;bottom: 100;">{{Count}}</span>
+      </button>   
       <div class="d-flex">
 
         <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" (click)="LogOut()">LogOut </span>
 
         <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/User/UserProfile']">My Profile </span>
-        
+
         <span *ngIf="LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/User/EditProfile']">Edit Profile</span>
 
         <span *ngIf="!LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Login']">Log In </span>
 
         <span *ngIf="!LogedIn" class="inactive underlineHover" style="cursor: pointer;" [routerLink]="['/Register']">Sign Up </span>
+        
       </div>
+      
     </div>
   </div>
 </nav>

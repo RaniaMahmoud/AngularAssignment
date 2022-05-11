@@ -9,6 +9,9 @@ import { ProductsService } from 'src/app/Services/products.service';
 import { APIProductsService } from 'src/app/Services/apiproducts.service';
 import { Subject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { DataService } from 'src/app/Services/data.service';
 
 @Component({
   selector: 'app-products',
@@ -19,6 +22,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   // Discount: DiscountOffers;
   // store: Store;
   // ClientName: String;
+  displayedColumns = ['Image','name','price','Quantity','count','Add'];
   ProductList: Array<IProduct>;
   ProductDetails:IProduct|undefined;
   ProductDetail:ProductViewM|undefined;
@@ -34,9 +38,12 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   @Output() AddToCart: EventEmitter<ProductViewModel>;
 
   Subscription:Array<Subscription>;
+  CardItem : number;
   constructor(private productService:ProductsService,
               private APIProductsService:APIProductsService,
-              private router: Router
+              private router: Router,
+              private matDialog: MatDialog,
+              private dataService: DataService
     ) {
     this.AddToCart = new EventEmitter<ProductViewModel>();
     // this.Discount = DiscountOffers['No Discount'];
@@ -48,6 +55,13 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     this.GetSelectedID = 0;
     this.ProductListVM=[]
     this.ProductListViewModel=[]
+    
+    if(localStorage.getItem('CardItems') === null){
+      this.CardItem = 0;
+    }else{
+      this.CardItem = (parseInt(localStorage.getItem('CardItems')!) + 1);;
+      //localStorage.setItem('CardItems',(parseInt(localStorage.getItem('CardItems')!) + 1).toString());
+    }
     // this.CreditCard="0000000000000000";
     // this.NationalID=29909011509345;
     //todayDate: Date = new Date();
@@ -132,7 +146,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   ngAfterViewInit(): void {
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.GetSelectedID == 0) {  
+    if (this.GetSelectedID == 0) {
       //this.ProductListNew = this.ProductList;
       //this.ProductListNew = this.productService.Get()
       console.log("WHAT");
@@ -145,6 +159,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       this.APIProductsService.getAllProductsByCategoryID(this.GetSelectedID).subscribe(productList=>{
         this.ProductListVM = productList;
       })
+
       //this.ProductListNew = this.productService.GetProductsByCategoryID(this.GetSelectedID);
       //this.ProductListNew = this.ProductList.filter((p => p.CateogryID == this.GetSelectedID));
     }
@@ -152,6 +167,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
 
   ngOnInit(): void {
     //this.ProductListNew = this.productService.Get();
+
     this.APIProductsService.getAllProducts().subscribe(productList=>{
       this.ProductListVM = productList;
     });
@@ -175,10 +191,17 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     })
   }
   Buy(id: number) {
-    this.IsPurshased = !this.IsPurshased;
-    let itemIndex = this.ProductList.findIndex(item => item.ID == id);
+    // this.IsPurshased = !this.IsPurshased;
+    // let itemIndex = this.ProductList.findIndex(item => item.ID == id);
+    if(localStorage.getItem('CardItems') === null){
+      localStorage.setItem('CardItems', this.CardItem.toString());
+    }else{
+      localStorage.setItem('CardItems',(parseInt(localStorage.getItem('CardItems')!) + 1).toString());
+    }
+    //this.productService.setProduct(product);
+    this.dataService.setProduct();
     //this.ProductList[itemIndex].Quantity -=1 ;
-    console.log((this.ProductList.find(p => p.ID == id)?.Quantity));
+    //console.log((this.ProductList.find(p => p.ID == id)?.Quantity));
   }
 
   UpdateUserCart(id: number, Name: String, Price: number, userQuantity: number, Quantity: number) {
@@ -209,4 +232,11 @@ export class ProductsComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       })
     }
   }
+
+  ProductDetaile(id: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = id;
+    this.matDialog.open(ProductDialogComponent, dialogConfig);
+  }
+
 }

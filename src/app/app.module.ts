@@ -24,13 +24,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewProductComponent } from './Components/new-product/new-product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayOutWithHeaderComponent } from './Components/lay-out-with-header/lay-out-with-header.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductDialogComponent } from './Components/product-dialog/product-dialog.component';
+import {MatTableModule} from '@angular/material/table'
+im
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProductsComponent,
     FooterComponent,
     SideMenuComponent,
     ProductCardDirective,
@@ -47,6 +50,7 @@ import { LayOutWithHeaderComponent } from './Components/lay-out-with-header/lay-
     LoginComponent,
     NewProductComponent,
     LayOutWithHeaderComponent,
+    ProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +60,11 @@ import { LayOutWithHeaderComponent } from './Components/lay-out-with-header/lay-
     BrowserAnimationsModule,
     MaterialModule,
     NoopAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

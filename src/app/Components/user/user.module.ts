@@ -7,26 +7,28 @@ import { FormsModule } from '@angular/forms';
 import { LayOutComponent } from '../lay-out/lay-out.component';
 import { AuthorizationGuard } from 'src/app/Guards/authorization.guard';
 
-const routes:Routes=[
+const routes: Routes = [
   {
-    path: '', component: LayOutComponent, children: [
-      {path:'', redirectTo:'/UserProfile', pathMatch:'full'},
-      {path: 'UserProfile', component:UserProfileComponent,canActivate:[AuthorizationGuard]},
-      {path: 'EditProfile', component:EditProfileComponent,canActivate:[AuthorizationGuard]}
-    ]
+    path: '',
+    component: LayOutComponent,
+    children: [
+      { path: '', redirectTo: '/UserProfile', pathMatch: 'full' },
+      {
+        path: 'UserProfile',
+        component: UserProfileComponent,
+        canActivate: [AuthorizationGuard],
+      },
+      {
+        path: 'EditProfile',
+        component: EditProfileComponent,
+        canActivate: [AuthorizationGuard],
+      },
+    ],
   },
-]
-
+];
 
 @NgModule({
-  declarations: [
-    EditProfileComponent,
-    UserProfileComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule
-  ]
+  declarations: [EditProfileComponent, UserProfileComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })
-export class UserModule { }
+export class UserModule {}

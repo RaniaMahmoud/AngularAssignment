@@ -1,0 +1,20 @@
+<section class="container my-3" style="width: 100%;">
+  <div class="container-fluid g-0">
+    <div class="d-flex flex-wrap g-0 p-3 m-5">
+      <div class="card m-3 me-5" ProductCard="#000;" style="width: 18rem;" *ngFor="let item of ProductListVM">
+        <img src="http://localhost:53574/{{item.Image}}" (click)="ProductDetails(item.id)" class="card-img-top" style="border-radius: 5%;cursor: pointer;" alt="...">
+        <div class="card-body">
+          <h3 class="card-title fw-bold">{{item.Name}}</h3>
+          <div class="text-end">
+            <p class="placeholder-glow">{{item.CreationDate| date:'longDate' }}</p>
+          </div>
+          <!-- <p class="card-text"><b>Quantity : </b> {{item.Quantity}}</p>
+          <p class="card-text"><b>Price : </b>{{item.Price|currency:'EGP'}}</p> -->
+          <div class="text-end">
+            <a href="#" class="btn btn-primary">BUY</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

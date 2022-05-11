@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { empty, isEmpty } from 'rxjs';
 import { APICategoryService } from 'src/app/Services/apicategory.service';
 import { APIProductsService } from 'src/app/Services/apiproducts.service';
 import { CategoryViewModel } from 'src/app/ViewModels/category-view-model';
