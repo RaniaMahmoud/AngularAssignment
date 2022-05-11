@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CardViewModel } from '../ViewModels/Card-view-model';
 import { User } from '../ViewModels/user-view-model';
 
 @Injectable({
@@ -27,7 +28,7 @@ export class APIUsersService {
   addUser(productvm:User):Observable<User>{
     console.log(JSON.stringify(productvm))
     return this.httpClient.post<User>(`${environment.APIUrl}/user`,JSON.stringify(productvm),this.httpOptions);
-  } 
+  }
 
   updateUser(ID: number, User: User):Observable<User>
   {
@@ -38,5 +39,9 @@ export class APIUsersService {
   deleteUser(ID:number):Observable<User>
   {
     return this.httpClient.delete<User>(`${environment.APIUrl}/user/${ID}`,this.httpOptions);
+  }
+  AddToCard(Card:CardViewModel):Observable<CardViewModel>{
+    console.log(JSON.stringify(Card))
+    return this.httpClient.post<CardViewModel>(`${environment.APINewURL}/Cards`,JSON.stringify(Card),this.httpOptions);
   }
 }

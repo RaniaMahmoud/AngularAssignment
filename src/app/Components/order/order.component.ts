@@ -63,7 +63,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     //   }
     // );
   }
-  
+
   ngAfterViewInit(): void {
     console.log(this.SelectedID)
   }
@@ -106,7 +106,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     //   );
     // }
   }
-  
+
   Done() {
     // this.ProductViewModel.forEach(item => {
     //   console.log("Out item.Quantity " + item.Quantity + " item.UserQ " + item.UserQ + "  ID " + item.ID);
@@ -125,7 +125,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     this.ProductViewModel = this.productService.ProductViewModel;
     this.TotalPrice = 0;
   }
-  
+
   Remove(ID: number) {
     // let ProductViewModel: Array<ProductViewModel> = [];
     // ProductViewModel = this.ProductViewModel.filter(p => p.ID != ID);

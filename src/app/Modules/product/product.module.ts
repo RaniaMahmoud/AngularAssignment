@@ -17,14 +17,13 @@ const routes: Routes = [
       {
         path: 'Show',
         component: ShowProductComponent,
-      }
-      ,{ path: 'Products', component: ProductsComponent }
+      },
     ],
-  }
+  },
 ];
 
 @NgModule({
-  declarations: [ShowProductComponent,ProductsComponent],
+  declarations: [ShowProductComponent],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })
 export class ProductModule {}

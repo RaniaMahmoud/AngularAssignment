@@ -14,15 +14,11 @@ import { ProductViewM } from 'src/app/ViewModels/product-view-model';
 export class ProductDialogComponent implements OnInit {
   ProductViewM:ProductViewM|undefined;
   constructor(public dialogRef: MatDialogRef<ProductDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
-    private APIProductsService:APIProductsService) {
-      console.log(this.data);
-      this.APIProductsService.getProductByID(this.data).subscribe(product=>{
-        this.ProductViewM = product;
-        console.log(this.ProductViewM);
-      });
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+
   }
   ngOnInit(): void {
+    //{id: 1, Name: 'Iphone ProX', Price: 13000, Quantity: 20, CreationDate: '2022-04-10T12:23:47.53', …}
   }
   close() {
     this.dialogRef.close('Thanks for using me!');

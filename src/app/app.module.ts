@@ -28,8 +28,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayOutWithHeaderComponent } from './Components/lay-out-with-header/lay-out-with-header.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDialogComponent } from './Components/product-dialog/product-dialog.component';
-import {MatTableModule} from '@angular/material/table'
-im
+import { MatTableModule } from '@angular/material/table';
+import { CardComponent } from './Components/card/card.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,8 @@ im
     NewProductComponent,
     LayOutWithHeaderComponent,
     ProductDialogComponent,
+    ProductsComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,7 @@ im
     NoopAnimationsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

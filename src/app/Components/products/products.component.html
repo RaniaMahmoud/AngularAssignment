@@ -12,15 +12,15 @@
             <div class="col-5 fw-bold mt-4" style="color: #000;">
               Quantity : {{item.Quantity}}
             </div>
-            <div class="col-7"> 
+            <div class="col-7">
               <input type="number" #Count class="form-control mb-5 mt-3" [max]="item.Quantity" [value]="1" min="1">
             </div>
           </div>
           <!-- <p class="card-text"><b>Quantity : </b> {{item.Quantity}}</p>
           <p class="card-text"><b>Price : </b>{{item.Price|currency:'EGP'}}</p> -->
-          
+
           <div class="text-end">
-            <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.id)" role="button">BUY</a>
+            <a name="buy" id="buy" class="btn btn-dark" (click)="Buy(item.id,item.Name,+Count.value,item.Price)" role="button">BUY</a>
             <!-- <a href="#" class="btn btn-primary">BUY</a> -->
           </div>
         </div>
