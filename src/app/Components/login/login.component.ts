@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Token } from '@angular/compiler';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIUsersService } from 'src/app/Services/apiusers.service';
+import { AuthData } from 'src/app/ViewModels/AuthData-view-model';
 import { User } from 'src/app/ViewModels/user-view-model';
 import { environment } from 'src/environments/environment';
 
@@ -11,39 +13,59 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
   User = {} as User;
+  Mytoken = {} as AuthData;
+  error="";
+  ErrorExist:boolean;
+  @ViewChild('alert', { static: true }) alert: ElementRef | undefined;
   constructor(private APIUserServise:APIUsersService,
     private router: Router) {
       // console.log(environment.ISLogin)
       // environment.ISLogin=true;
       // console.log(environment.ISLogin)
+      this.ErrorExist=false;
   }
 
   ngOnInit(): void {
   }
   Submit(){
-    this.APIUserServise.getAllUsers().subscribe(users=>{
-      let isExist=false;  
-      users.forEach(user => {
-        if(user.Full_Name==this.User.Full_Name && user.password==this.User.password){
-          isExist=true;
-          environment.UserID = user.id;
-          console.log(environment.UserID)
-        }        
-      });
-      if(isExist){
-        console.log(isExist)
-        console.log(environment.ISLogin)
-        environment.ISLogin=true;
-        console.log(environment.ISLogin)
+      this.APIUserServise.LogIn({Password:this.User.password,UserName:this.User.Full_Name}).subscribe({
+        next:(data)=>{
+          console.log(data);
+          environment.Token=data.token;
+          environment.UserID=data.UserId;
+          environment.UserName=data.UserName;
+          environment.expiration=data.expiration;
+          environment.ISLogin=true;
+          this.router.navigate(['/Home']);
+        },
+        error:(error)=>{
+          
+          this.error=error.statusText;
+          console.log(error);
+          console.log(error.statusText);
+          this.ErrorExist=true;
+          this.router.navigate(['/Login'])
+        }
+      })
+    //   if(isExist){
+    //     console.log(isExist)
+    //     console.log(environment.ISLogin)
+    //     environment.ISLogin=true;
+    //     console.log(environment.ISLogin)
         
-        localStorage.setItem("Token",environment.Token=this.randomString());
-        this.router.navigate(['/Home'])
-      }else{
-        console.log(isExist)
-        this.router.navigate(['/Login'])
-      }
-    }) 
+    //     localStorage.setItem("Token",environment.Token=this.randomString());
+    //     this.router.navigate(['/Home'])
+    //   }else{
+    //     console.log(isExist)
+    //     this.router.navigate(['/Login'])
+    //   }
+    // }) 
   }
+
+  closeAlert() {
+    this.ErrorExist=false;
+  }
+
   randomString() {
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var result = '';
@@ -52,4 +74,5 @@ export class LoginComponent implements OnInit {
     }
     return result;
   }
+  
 }

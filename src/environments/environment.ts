@@ -7,8 +7,10 @@ export const environment = {
   APINewURL:"http://localhost:53574/api",
   APIUrl: "http://localhost:3000",
   ISLogin:false,
-  Token:"Token",
-  UserID:0
+  Token:"",
+  UserID:"",
+  UserName:"",
+  expiration:new Date()
 };
 
 /*

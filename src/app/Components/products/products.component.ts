@@ -26,6 +26,7 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 import { DataService } from 'src/app/Services/data.service';
 import { APIUsersService } from 'src/app/Services/apiusers.service';
 import { CardViewModel } from 'src/app/ViewModels/Card-view-model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -55,6 +56,8 @@ export class ProductsComponent
 
   Subscription: Array<Subscription>;
   CardItem: number;
+  card : CardViewModel[];
+  CardProducts:CardViewModel[];
   constructor(
     private productService: ProductsService,
     private APIProductsService: APIProductsService,
@@ -64,99 +67,23 @@ export class ProductsComponent
     private dataService: DataService
   ) {
     this.AddToCart = new EventEmitter<ProductViewModel>();
-    // this.Discount = DiscountOffers['No Discount'];
-    // this.ClientName = "Khaled";
-    // this.store = new Store("Assiut Store", ["Assiut", "Minia"], "../../assets/Storelogo.png");
     this.ProductListNew = new Array<IProduct>();
     this.IsPurshased = true;
     this.ProductList = new Array<IProduct>();
     this.GetSelectedID = 0;
     this.ProductListVM = [];
+    this.CardProducts=[];
     this.ProductListViewModel = [];
-
+    this.card=[];
     if (localStorage.getItem('CardItems') === null) {
-      this.CardItem = 0;
+      this.CardItem = 1;
     } else {
       this.CardItem = parseInt(localStorage.getItem('CardItems')!) + 1;
-      //localStorage.setItem('CardItems',(parseInt(localStorage.getItem('CardItems')!) + 1).toString());
     }
-    // this.CreditCard="0000000000000000";
-    // this.NationalID=29909011509345;
-    //todayDate: Date = new Date();
-
-    // this.ProductList.push(
-    //   {
-    //     CateogryID: 1,
-    //     ID: 1,
-    //     Img: "../../assets/productcard.jpg",
-    //     Name: "iPhone 11",
-    //     Price: 120,
-    //     Quantity: 0,
-    //     CreationDate: new Date()
-    //   }
-    // );
-    // this.ProductList.push(
-    //   {
-    //     CateogryID: 1,
-    //     ID: 2,
-    //     Img: "../../assets/productcard.jpg",
-    //     Name: "iPhone 12",
-    //     Price: 100,
-    //     Quantity: 1,
-    //     CreationDate: new Date()
-    //   }
-    // );
-    // this.ProductList.push(
-    //   {
-    //     CateogryID: 1,
-    //     ID: 3,
-    //     Img: "../../assets/productcard.jpg",
-    //     Name: "iPhone 13",
-    //     Price: 150,
-    //     Quantity: 20,
-    //     CreationDate: new Date()
-    //   }
-    // );
-    // this.ProductList.push(
-    //   {
-    //     CateogryID: 2,
-    //     ID: 4,
-    //     Img: "../../assets/productcard.jpg",
-    //     Name: "Digital cameras",
-    //     Price: 100,
-    //     Quantity: 1,
-    //     CreationDate: new Date()
-    //   }
-    // );
-    // this.ProductList.push(
-    //   {
-    //     CateogryID: 2,
-    //     ID: 5,
-    //     Img: "../../assets/productcard.jpg",
-    //     Name: "LCD monitors",
-    //     Price: 150,
-    //     Quantity: 0,
-    //     CreationDate: new Date()
-    //   }
-    // );
-
-    // this.CategoryList = new Array<ICategory>();
-    // this.CategoryList.push(
-    //   {
-    //     ID:1,
-    //     Name:"IPhone"
-    //   }
-    // );
-    // this.CategoryList.push(
-    //   {
-    //     ID:2,
-    //     Name:"Samsung"
-    //   }
-    // );
     this.Subscription = [];
     this.Subscription.push(
       this.APIProductsService.getAllProducts().subscribe((productList) => {
-        this.ProductListVM = productList;
+        this.ProductListVM = productList.filter(p=>p.Quantity>0);
       })
     );
   }
@@ -166,23 +93,18 @@ export class ProductsComponent
   ngAfterViewInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
     if (this.GetSelectedID == 0) {
-      //this.ProductListNew = this.ProductList;
-      //this.ProductListNew = this.productService.Get()
       console.log('WHAT');
       this.APIProductsService.getAllProducts().subscribe((productList) => {
         console.log('PRO');
-        this.ProductListVM = productList;
+        this.ProductListVM = productList.filter(p=>p.Quantity>0);
       });
     } else {
       console.log(this.GetSelectedID);
       this.APIProductsService.getAllProductsByCategoryID(
         this.GetSelectedID
       ).subscribe((productList) => {
-        this.ProductListVM = productList;
+        this.ProductListVM = productList.filter(p=>p.Quantity>0);
       });
-
-      //this.ProductListNew = this.productService.GetProductsByCategoryID(this.GetSelectedID);
-      //this.ProductListNew = this.ProductList.filter((p => p.CateogryID == this.GetSelectedID));
     }
   }
 
@@ -190,7 +112,7 @@ export class ProductsComponent
     //this.ProductListNew = this.productService.Get();
 
     this.APIProductsService.getAllProducts().subscribe((productList) => {
-      this.ProductListVM = productList;
+      this.ProductListVM = productList.filter(p=>p.Quantity>0);
     });
   }
   Display(id: number) {
@@ -215,73 +137,60 @@ export class ProductsComponent
       this.ProductListVM = productList;
     });
   }
-  Buy(id: number,Name: string,Quantity: number,Price: number) {
-
-    /*
-    id: number;
-    Name: string;
-    Quantity: number;
-    Price: number;
-    Image: string;
-    CategoryID: number;
-    CreationDate?:Date;
-     */
-
-    // this.IsPurshased = !this.IsPurshased;
-    // let itemIndex = this.ProductList.findIndex(item => item.ID == id);
+  Buy(id: number,Name: string,Quantity: number,Price: number,Image:string,
+    QuantityOfProduct:number) {
+    let IsExist=false;
     let card = {} as CardViewModel;
-    //let ProductQuantity={}as ProductQuantity;
-    /*
-        ProductID:number,
-        OrderID:number,
-        Quantity:number
-    */
-   /*
-  {
-    "ID": 0,
-    "TotalPrice": 0,
-    "UserID": "string",
-    "ProductQuantity": {
-      "ID": 0,
-      "ProductID": 0,
-      "OrderID": 0,
-      "Quantity": 0
-    }
-  } 
-*/
-/*{"ProductQuantity":{"ProductID":0,"Quantity":1},"TotalPrice":13000,"UserID":"1"}*/
-    card.ProductQuantity = 
-    {    
-      ProductID: 0,
-      Quantity: Quantity,
-    };
-    console.log(card.ProductQuantity);
-    card.TotalPrice=Price*Quantity;
-    card.UserID="1";//edit
-    console.log(card);
-    this.APIUserService.AddToCard(  {
-      TotalPrice: Price*Quantity,
-      UserID: "14546",
-      ProductQuantity: {
+      card.ProductQuantity = 
+      {    
         ProductID: id,
-        Quantity: Quantity
+        Quantity: Quantity,
+      };
+      card.TotalPrice=Price*Quantity;
+      console.log(card.ProductQuantity);
+      card.TotalPrice=Price*Quantity;
+      card.Price=Price;
+      card.Image=Image;
+      card.QuantityOfProduct=QuantityOfProduct;
+      card.ProductName=Name;
+      card.ProductID=id;
+      console.log(card);
+      if (localStorage.getItem('Card') === null) {
+        localStorage.setItem("Card", JSON.stringify(this.card));
+      } else {
+        //let ListOfItems = [];
+        this.CardProducts = JSON.parse(localStorage.getItem("Card")!);
+        this.CardProducts.map(c=>{
+          if(c.ProductID == id){
+            c.ProductQuantity!.Quantity += 1;
+            IsExist=true;
+            console.log("IN")
+          }
+        })
       }
-    }).subscribe(c=>{
-      console.log(c);
-    });
-    if (localStorage.getItem('CardItems') === null) {
-      localStorage.setItem('CardItems', this.CardItem.toString());
-    } else {
-      localStorage.setItem(
-        'CardItems',
-        (parseInt(localStorage.getItem('CardItems')!) + 1).toString()
-      );
-    }
-
-    //this.productService.setProduct(product);
-    this.dataService.setProduct();
-    //this.ProductList[itemIndex].Quantity -=1 ;
-    //console.log((this.ProductList.find(p => p.ID == id)?.Quantity));
+      
+      this.card.push(card);
+      if (localStorage.getItem('CardItems') === null) { 
+        localStorage.setItem("Card", JSON.stringify(this.card));
+        localStorage.setItem('CardItems', this.CardItem.toString());
+      } else {
+        if(IsExist){
+          console.log("here");
+          localStorage.setItem("Card", JSON.stringify(this.CardProducts));
+        }else{
+          localStorage.setItem("Card", JSON.stringify(this.card));
+          localStorage.setItem(
+            'CardItems',
+            (parseInt(localStorage.getItem('CardItems')!) + 1).toString()
+          );
+        }
+      }
+      this.dataService.setProduct();
+    // if(environment.ISLogin){
+      
+    // }else{
+    //   this.router.navigate(['/Login']);
+    // }
   }
 
   UpdateUserCart(

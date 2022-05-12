@@ -16,12 +16,14 @@ export class UserProfileComponent implements OnInit {
   constructor(private APIUserServise:APIUsersService,
     private router: Router,
     private location:Location) { 
-      APIUserServise.getUserByID(environment.UserID).subscribe(user=>{
-        this.User=user;
-      })
+
     }
 
   ngOnInit(): void {
+    this.APIUserServise.getUser(environment.UserID).subscribe(user=>{
+      console.log(user);
+      this.User=user;
+    })
   }
   GoBackToPage(){
     this.location.back();

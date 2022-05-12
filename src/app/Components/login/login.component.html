@@ -1,4 +1,15 @@
 <!-- style="background-color: #56baed; height: 100vh;" -->
+<div class="wrapper fadeInDown" *ngIf="ErrorExist">
+  <!-- <div class="alert alert-danger mt-3" role="alert" style="width: 30%;">
+    {{error}}
+  </div> -->
+  <div #alert class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{error}}
+  </div>
+</div>
 
 <div class="wrapper fadeInDown" style="height: 100vh;">
 

@@ -14,9 +14,9 @@ export class EditProfileComponent implements OnInit {
   User={} as User
   constructor(private APIUserServise:APIUsersService,
     private router: Router) { 
-      if(environment.UserID > 0){
+      if(environment.UserID !== ""){
         console.log(environment.UserID)
-        APIUserServise.getUserByID(environment.UserID).subscribe(user=>{
+        APIUserServise.getUser(environment.UserID).subscribe(user=>{
           this.User=user;
           console.log(user)
         })
@@ -25,7 +25,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
   }
   Check(){
-    this.APIUserServise.updateUser(environment.UserID,this.User).subscribe(user=>{
+    this.APIUserServise.update(environment.UserID,this.User).subscribe(user=>{
       console.log(user);
       this.router.navigate(['/User/UserProfile'])
     })

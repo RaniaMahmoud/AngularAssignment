@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
       password: this.User.password,
       Email: this.User.Email,
       Address: {
-        City: this.User.Address.city,
+        City: this.User.Address.City,
         postalCode: this.User.Address.postalCode,
         street: this.User.Address.street
       },
@@ -122,7 +122,7 @@ export class RegisterComponent implements OnInit {
     console.log(obj.Mobile_number);
     this.APIUserServise.addUser(this.User).subscribe(user=>{
       console.log("Done Save User");
-      this.router.navigate(['/'])
+      this.router.navigate(['/Login'])
     })
   }
   

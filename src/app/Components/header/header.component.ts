@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem("Token");
     this.router.navigate(['/Home']);
   }
- 
+
   getData() {
     //this.getData();
   }

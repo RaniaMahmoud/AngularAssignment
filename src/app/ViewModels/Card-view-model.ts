@@ -7,5 +7,10 @@ export interface CardViewModel {
     ProductID:number,
     OrderID?:number,
     Quantity:number
-  }
+  },
+  Image:string,
+  QuantityOfProduct:number,
+  ProductName:string,
+  Price:number,
+  ProductID:number
 }

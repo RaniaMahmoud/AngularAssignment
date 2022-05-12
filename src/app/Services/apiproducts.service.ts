@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { OrderVM } from '../ViewModels/Order-view-model';
 import { ProductViewM } from '../ViewModels/product-view-model';
 
 @Injectable({
@@ -47,5 +48,10 @@ export class APIProductsService {
   deleteProduct(ID:number):Observable<ProductViewM>
   {
     return this.httpClient.delete<ProductViewM>(`${environment.APINewURL}/Products/${ID}`,this.httpOptions);
+  }
+
+  OrderProduct(order:OrderVM):Observable<OrderVM>
+  {
+    return this.httpClient.post<OrderVM>(`${environment.APINewURL}/Products/Order`, JSON.stringify(order),this.httpOptions);
   }
 }

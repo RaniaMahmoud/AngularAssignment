@@ -1,16 +1,60 @@
 <section class="container my-5" style="width: 100%;">
-    <div class="card mb-3 ms-5 mt-5 rounded-3 border-info border-1 border shadow" style="max-width: 1000px;">
-        <div class="row g-0">
-        <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
+    <div class="wrapper fadeInDown" *ngIf="Done">
+        <!-- <div class="alert alert-danger mt-3" role="alert" style="width: 30%;">
+          {{error}}
+        </div> -->
+        <div #alert class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <b> Order Done</b>
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>      
+    <div class="row g-0">
+        <div class="col-7">
+            <div class="card mb-3 ms-5 mt-5 rounded-3 border-info border-1 border shadow" style="max-width: 700px;" *ngFor="let item of Card">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="http://localhost:53574/{{item?.Image}}" style="height: 100%;" class="img-fluid rounded-5" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold" style="color: #000;">{{item.ProductName}}</h3>
+                            <h4 class="card-text mt-2"><b>Price : </b>{{item.Price|currency:'EGP'}}</h4>
+                            <div class="row">
+                                <div class="col-5 fw-bold mt-4" style="color: #000;">
+                                    Quantity : {{item.QuantityOfProduct}}
+                                </div>
+                                <div class="col-7">
+                                    <input type="number" #Count class="form-control mb-5 mt-3" [max]="item.QuantityOfProduct" value="{{item.ProductQuantity!.Quantity}}" min="1" (change)="OnQuantityChange(item.ProductID, +Count.value)">
+                                </div>
+                            </div>
+                            <div class="text-end" style="margin-right: 10%;">
+                                <a name="Delete" id="Delete" class="btn btn-danger mt-5" (click)="Delete(item.ProductID)" role="button">Delete</a>
+                                <!-- <a href="#" class="btn btn-primary">BUY</a> -->
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="col-5 mt-5">
+            <hr class="ms-5 me-5" />
+            <div class="row g-0">
+              <div class="col-12">
+                <div class="card shadow-lg mb-5 me-5 ms-5 rounded">
+                  <div class="card-body">
+                    <h3>
+                      Total Price <b> {{ TotalPrice | currency }}</b>
+                    </h3>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+            <div class="text-end" style="margin-right: 10%;">
+                <button name="buy" id="Edit" class="btn btn-dark mt-5" role="button" [disabled]="! Enable" (click)="PlaceOrder()">Place Order</button>
+                <!-- <a href="#" class="btn btn-primary">BUY</a> -->
+            </div>  
         </div>
     </div>
 </section>

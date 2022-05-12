@@ -4,7 +4,7 @@ export interface User{
     Email: string,
     Mobile_number: string[],
     Address:{
-        city: string,
+        City: string,
         postalCode: string,
         street: string,
     },
