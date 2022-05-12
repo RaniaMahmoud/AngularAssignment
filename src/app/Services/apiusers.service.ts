@@ -7,6 +7,7 @@ import { CardViewModel } from '../ViewModels/Card-view-model';
 import { LogIn } from '../ViewModels/LogIn-view-model';
 import { AuthData } from '../ViewModels/AuthData-view-model';
 import { User } from '../ViewModels/user-view-model';
+import { Admin } from '../ViewModels/AdminData-view-model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,18 @@ export class APIUsersService {
   }
   
   LogIn(user:LogIn):Observable<AuthData>{
+    return this.httpClient.post<AuthData>(`${environment.APINewURL}/Account/AdminlogIn`,JSON.stringify(user),this.httpOptions)
+  }
+
+  AdminRegist(user:User):Observable<Admin>{
+    console.log(JSON.stringify(user))
+    return this.httpClient.post<Admin>(`${environment.APINewURL}/Account/AdminRegister`,JSON.stringify(user),this.httpOptions);
+  }
+  
+  AdminLogIn(user:LogIn):Observable<AuthData>{
     return this.httpClient.post<AuthData>(`${environment.APINewURL}/Account/logIn`,JSON.stringify(user),this.httpOptions)
   }
+
 
   updateUser(ID: string, User: User):Observable<User>
   {
@@ -53,6 +64,11 @@ export class APIUsersService {
   {
     console.log(JSON.stringify(User))
     return this.httpClient.patch<User>(`${environment.APINewURL}/Account/${UserEditID}`,JSON.stringify(User),this.httpOptions);
+  }
+
+  AllAdmins():Observable<AuthData[]>
+  {
+    return this.httpClient.get<AuthData[]>(`${environment.APINewURL}/Account/`,this.httpOptions);
   }
 
   deleteUser(ID:number):Observable<User>

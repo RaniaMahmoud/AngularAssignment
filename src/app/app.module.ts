@@ -30,6 +30,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDialogComponent } from './Components/product-dialog/product-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { CardComponent } from './Components/card/card.component';
+import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
+import { AdminRegistComponent } from './Components/admin-regist/admin-regist.component';
+import { ProductDetailsPopUpComponent } from './Components/product-details-pop-up/product-details-pop-up.component';
+import { AdminHomeComponent } from './Components/admin-home/admin-home.component';
+import { AllAdminComponent } from './Components/all-admin/all-admin.component';
+import { AllProductsComponent } from './Components/all-products/all-products.component';
+import { AdminLayOutComponent } from './Components/admin-lay-out/admin-lay-out.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +47,12 @@ import { CardComponent } from './Components/card/card.component';
     ProductCardDirective,
     EgynationaIDPipe,
     CreditCardPipe,
-    OrderComponent,
+    
     HomeComponent,
     ErrorComponent,
     AboutUsComponent,
     ContactUsComponent,
-    ProductDetailsComponent,
+    
     RegisterComponent,
     LayOutComponent,
     LoginComponent,
@@ -54,6 +61,13 @@ import { CardComponent } from './Components/card/card.component';
     ProductDialogComponent,
     ProductsComponent,
     CardComponent,
+    AdminLoginComponent,
+    AdminRegistComponent,
+    ProductDetailsPopUpComponent,
+    AdminHomeComponent,
+    AllAdminComponent,
+    AllProductsComponent,
+    AdminLayOutComponent,
   ],
   imports: [
     BrowserModule,

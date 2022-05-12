@@ -1,0 +1,39 @@
+<section class="container my-3 pe-4" style="width: 100%; text-align: center;">
+    <mat-table [dataSource]="ProductListVM" class="mat-elevation-z8 demo-table">
+      <ng-container matColumnDef="Image">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> <img src="http://localhost:53574/{{Product.Image}}" class="img-fluid rounded" style="width: 7vmax; height: 7vmax;" alt=""></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> {{Product.Name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> {{Product.Price}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Quantity">
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> {{Product.Quantity}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Details">
+        <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> <button mat-raised-button color="info" (click)="Details(Product.id)" name="Details" id="Details">Details</button> </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> <button mat-raised-button color="warning" (click)="Edit(Product.id)" name="Edit" id="Edit">Edit</button> </mat-cell>
+      </ng-container>      
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> <button mat-raised-button color="danger" (click)="Delete(Product.id)" name="Delete" id="Delete">Delete</button> </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="Add">
+        <mat-header-cell *matHeaderCellDef> Add </mat-header-cell>
+        <mat-cell *matCellDef="let Product"> <button mat-raised-button color="primary" (click)="Buy(Product.id)" name="ADD" id="ADD">ADD</button> </mat-cell>
+      </ng-container> -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </section>
+  

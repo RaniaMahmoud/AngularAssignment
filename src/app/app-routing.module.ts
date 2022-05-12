@@ -30,8 +30,6 @@ const routes: Routes = [
       { path: 'AboutUs', component: AboutUsComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       { path: 'Products', component: ProductsComponent },
-      { path: 'Order', component: OrderComponent },
-      { path: 'Products/:id', component: ProductDetailsComponent },
       { path: 'Products/Edit/:id', component: NewProductComponent },
       { path: 'Card', component: CardComponent },
       { path: 'Admin/insertProduct', redirectTo: '/Admin', pathMatch: 'full' },

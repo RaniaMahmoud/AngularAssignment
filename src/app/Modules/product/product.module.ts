@@ -13,7 +13,9 @@ const routes: Routes = [
     path: '',
     component: LayOutComponent,
     children: [
-      { path: '', redirectTo: '/Home', pathMatch: 'full' },
+      { path: '', redirectTo: '/Home', pathMatch: 'full' },      
+      { path: 'Order', component: OrderComponent },
+      { path: 'Products/:id', component: ProductDetailsComponent },
       {
         path: 'Show',
         component: ShowProductComponent,
@@ -23,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ShowProductComponent],
+  declarations: [ShowProductComponent,OrderComponent,ProductDetailsComponent],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })
 export class ProductModule {}
