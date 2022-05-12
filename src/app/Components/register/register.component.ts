@@ -103,12 +103,26 @@ export class RegisterComponent implements OnInit {
     // this.User.PostalCode=this.postalCode.value
     // this.User.street=this.street.value    
     // this.User.password=this.password.value
-    this.User=this.RegisterForm.value
+    this.User=this.RegisterForm.value;
+    let obj=
+    {
+      password: this.User.password,
+      Email: this.User.Email,
+      Address: {
+        City: this.User.Address.city,
+        postalCode: this.User.Address.postalCode,
+        street: this.User.Address.street
+      },
+      Mobile_number: this.User.Mobile_number,
+      Full_Name: this.User.Full_Name
+    }
+    console.log(obj);
     console.log(this.User);
+    console.log(this.User.Mobile_number);
+    console.log(obj.Mobile_number);
     this.APIUserServise.addUser(this.User).subscribe(user=>{
       console.log("Done Save User");
       this.router.navigate(['/'])
-
     })
   }
   

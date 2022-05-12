@@ -14,6 +14,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
+import { CardComponent } from './Components/card/card.component';
 /*i)	Home (static page with any data)
 ii)	About us (static page with any data)
 iii)	Contact us (static page with any data)
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'Order', component: OrderComponent },
       { path: 'Products/:id', component: ProductDetailsComponent },
       { path: 'Products/Edit/:id', component: NewProductComponent },
+      { path: 'Card', component: CardComponent },
       { path: 'Admin/insertProduct', redirectTo: '/Admin', pathMatch: 'full' },
       { path: 'Admin', component: NewProductComponent },
     ],
